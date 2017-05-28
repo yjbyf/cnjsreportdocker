@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y curl sudo && \
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn
+RUN apt-get update && apt-get install -y yarn apt-utils
 RUN apt-get install -y build-essential chrpath git-core libssl-dev libfontconfig1-dev
 RUN apt-get install -y language-pack-zh*
 RUN apt-get install -y chinese*
@@ -27,16 +27,16 @@ WORKDIR /usr/src/app
 
 RUN pwd
 RUN ls -al
-#RUN sudo npm install jsreport --production
-RUN sudo yarn add jsreport --production
+RUN sudo npm install jsreport --production
+#RUN sudo yarn add jsreport --production
 #RUN yarn config set registry https://registry.npm.taobao.org
 #RUN npm config set registry https://registry.npm.taobao.org
 
 RUN ls -al
 RUN sudo node node_modules/jsreport --init
 
-#RUN sudo npm install --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
-RUN sudo yarn add --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
+RUN sudo npm install --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
+#RUN sudo yarn add --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
     jsreport-mssql-store jsreport-postgres-store jsreport-mongodb-store jsreport-wkhtmltopdf \
     electron jsreport-electron-pdf
 
