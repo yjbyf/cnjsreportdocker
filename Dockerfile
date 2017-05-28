@@ -42,6 +42,7 @@ RUN sudo yarn add --production --save --save-exact jsreport-ejs jsreport-jade js
 
 ADD run.sh /usr/src/app/run.sh
 COPY . /usr/src/app
+RUN ls -l /usr/src/app
 
 ENV NODE_ENV production
 ENV electron:strategy electron-ipc
