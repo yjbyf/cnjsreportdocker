@@ -40,6 +40,8 @@ RUN sudo npm install --production --save --save-exact jsreport-ejs jsreport-jade
     jsreport-mssql-store jsreport-postgres-store jsreport-mongodb-store jsreport-wkhtmltopdf \
     electron jsreport-electron-pdf
 
+RUN pwd
+RUN ls -al
 ADD run.sh /usr/src/app/run.sh
 COPY . /usr/src/app
 RUN ls -l /usr/src/app
