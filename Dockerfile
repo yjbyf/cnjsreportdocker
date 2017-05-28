@@ -42,11 +42,11 @@ ENV electron:strategy electron-ipc
 ENV phantom:strategy phantom-server
 ENV tasks:strategy http-server
 
-#RUN apt-get install -y build-essential chrpath git-core libssl-dev libfontconfig1-dev
-#RUN apt-get install -y language-pack-zh*
-#RUN apt-get install -y chinese*
-#RUN apt-get install -y fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
-#RUN apt-get install -y fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-arphic-gbsn00lp fonts-arphic-gkai00mp fonts-arphic-ukai fonts-arphic-uming fonts-cns11643-kai fonts-cns11643-sung fonts-cwtex-fs fonts-cwtex-heib fonts-cwtex-kai fonts-cwtex-ming fonts-cwtex-yen
-#RUN apt-get install -y fonts-wqy-zenhei
+RUN apt-get install -y build-essential chrpath git-core libssl-dev libfontconfig1-dev
+RUN apt-get install -y language-pack-zh*
+RUN apt-get install -y chinese*
+RUN apt-get install -y fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+RUN apt-get install -y fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-arphic-gbsn00lp fonts-arphic-gkai00mp fonts-arphic-ukai fonts-arphic-uming fonts-cns11643-kai fonts-cns11643-sung fonts-cwtex-fs fonts-cwtex-heib fonts-cwtex-kai fonts-cwtex-ming fonts-cwtex-yen
+RUN apt-get install -y fonts-wqy-zenhei
 
 CMD ["bash", "/usr/src/app/run.sh"]
