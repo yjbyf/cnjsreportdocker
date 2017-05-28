@@ -8,13 +8,7 @@ RUN apt-get update && apt-get install -y curl sudo && \
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn apt-utils
-RUN apt-get install -y build-essential chrpath git-core libssl-dev libfontconfig1-dev
-RUN apt-get install -y language-pack-zh*
-RUN apt-get install -y chinese*
-RUN apt-get install -y fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
-RUN apt-get install -y fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-arphic-gbsn00lp fonts-arphic-gkai00mp fonts-arphic-ukai fonts-arphic-uming fonts-cns11643-kai fonts-cns11643-sung fonts-cwtex-fs fonts-cwtex-heib fonts-cwtex-kai fonts-cwtex-ming fonts-cwtex-yen
-RUN apt-get install -y fonts-wqy-zenhei
+RUN apt-get update && apt-get install -y yarn
 
 RUN adduser --disabled-password --gecos "" jsreport
 RUN echo "jsreport ALL=(root) NOPASSWD: /usr/local/bin/node" >> /etc/sudoers
@@ -27,29 +21,32 @@ WORKDIR /usr/src/app
 
 RUN pwd
 RUN ls -al
-RUN sudo npm install jsreport --production
-#RUN sudo yarn add jsreport --production
+#RUN sudo npm install jsreport --production
+RUN sudo yarn add jsreport --production
 #RUN yarn config set registry https://registry.npm.taobao.org
 #RUN npm config set registry https://registry.npm.taobao.org
 
 RUN ls -al
 RUN sudo node node_modules/jsreport --init
 
-RUN sudo npm install --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
-#RUN sudo yarn add --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
+#RUN sudo npm install --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
+RUN sudo yarn add --production --save --save-exact jsreport-ejs jsreport-jade jsreport-freeze jsreport-phantom-image \
     jsreport-mssql-store jsreport-postgres-store jsreport-mongodb-store jsreport-wkhtmltopdf \
     electron jsreport-electron-pdf
 
-RUN pwd
-RUN ls -al
 ADD run.sh /usr/src/app/run.sh
 COPY . /usr/src/app
-RUN ls -l /usr/src/app
 
 ENV NODE_ENV production
 ENV electron:strategy electron-ipc
 ENV phantom:strategy phantom-server
 ENV tasks:strategy http-server
 
+#RUN apt-get install -y build-essential chrpath git-core libssl-dev libfontconfig1-dev
+#RUN apt-get install -y language-pack-zh*
+#RUN apt-get install -y chinese*
+#RUN apt-get install -y fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+#RUN apt-get install -y fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-arphic-gbsn00lp fonts-arphic-gkai00mp fonts-arphic-ukai fonts-arphic-uming fonts-cns11643-kai fonts-cns11643-sung fonts-cwtex-fs fonts-cwtex-heib fonts-cwtex-kai fonts-cwtex-ming fonts-cwtex-yen
+#RUN apt-get install -y fonts-wqy-zenhei
 
 CMD ["bash", "/usr/src/app/run.sh"]
